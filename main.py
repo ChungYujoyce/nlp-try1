@@ -2,15 +2,18 @@ from typing import Any, Iterable, List, Optional, Set, Tuple
 
 from load import load_words
 import math
+import time
 import vectors as v
 from vectors import Vector
 from word import Word
 
 def most_similar(base_vector, words):
+    start = time.time()
     # finds n words with smallest cosine similarity for a given word
     words_with_distance = [(v.cosine_similarity_normalized(base_vector, w.vector), w) for w in words]
     # want as large as 1
     sorted_by_dis = sorted(words_with_distance)
+    print(f"Elapsed {time.time() - start} s")
     return sorted_by_dis
 
 def print_most_similar(words, text):

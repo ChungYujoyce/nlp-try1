@@ -14,6 +14,7 @@ from operator import itemgetter
 import re
 import vectors as v
 from word import Word
+import numpy as np
 
 # Load and clean up data
 def load_words(file_path):
@@ -32,7 +33,7 @@ def load_raw(file_path):
     def parse_line(line, frequency):
         tokens = line.split()
         word = tokens[0]
-        vector = v.normalize([float(x) for x in tokens[1:]])
+        vector = v.normalize(np.array([float(x) for x in tokens[1:]]))
         return Word(word, vector, frequency)
 
     words = []

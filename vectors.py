@@ -1,24 +1,25 @@
 from typing import List
 
 import math
+import numpy as np
 
-Vector = List[float]
+Vector = np.ndarray[float]
 
 # define some math for measuring similarity
 def l2_len(v):
-    return math.sqrt(sum([x*x for x in v]))
+    return math.sqrt(np.dot(v, v))
 
 def dot(v1, v2):
     assert len(v1) == len(v2)
-    return sum([x*y for (x,y) in zip(v1, v2)])
+    return np.dot(v1, v2)
 
 def add(v1, v2):
     assert len(v1) == len(v2)
-    return [x + y for (x,y) in zip(v1, v2)]
+    return np.add(v1, v2)
 
 def sub(v1, v2):
     assert len(v1) == len(v2)
-    return [x - y for (x,y) in zip(v1, v2)]
+    return np.subtract(v1, v2)
 
 def normalize(v):
     l = l2_len(v)
