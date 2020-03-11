@@ -3,7 +3,7 @@ from typing import List
 import math
 import numpy as np
 
-Vector = np.ndarray[float]
+Vector = np.ndarray([])
 
 # define some math for measuring similarity
 def l2_len(v):
