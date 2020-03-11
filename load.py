@@ -2,6 +2,9 @@
 Load the input file by https://fasttext.cc/docs/en/english-vectors.html
 and clean up
 """
+#!/usr/bin/python3
+# -*- coding:utf8 -*-
+import codecs
 
 from typing import Iterable, List, Set
 # type check
@@ -9,7 +12,7 @@ from typing import Iterable, List, Set
 from itertools import groupby
 from operator import itemgetter
 import re
-from vectors as v
+import vectors as v
 from word import Word
 import numpy as np
 
@@ -36,19 +39,19 @@ def load_raw(file_path):
     words = []
     # words sorted by degree of common
     frequency = 1
-    with open(file_path) as f:
+    with open(file_path, encoding="utf8") as f:
         for line in f:
             w = parse_line(line, frequency)
             words.append(w)
             frequency += 1
     return words
 
-def iter_len(Iterable[complex]):
+def iter_len(iter):
     return sum(1 for _ in iter)
 
-def most_common_dimension(List[Word]):
+def most_common_dimension(worda):
     lengths = sorted([len(word.vector) for word in words])
-    dimensions [(k, iter_len(v)) for k, v in groupby(lengths)]
+    dimensions = [(k, iter_len(v)) for k, v in groupby(lengths)]
     print("dimension:")
     for (dim, num_vectors) in dimensions:
         print(f"{num_vectors} {dim}-dimensional vectors")
@@ -59,7 +62,7 @@ def most_common_dimension(List[Word]):
 ignore_char_regex = re.compile("[\W_]")
 
 # start and end with alphanumeric character
-is_valid_word = re.complie("^[^\W_].*[^\W_]$")
+is_valid_word = re.compile("^[^\W_].*[^\W_]$")
 
 def remove_duplicates(words):
     seen_words: Set[str] = set()
@@ -73,7 +76,7 @@ def remove_duplicates(words):
 
 # throws away words that start or end with a non-alphanumeric character
 def remove_stop_words(words):
-    return [W for w in words if (len(w.text) > 1 and is_valid_word.match(w.text))]
+    return [w for w in words if (len(w.text) > 1 and is_valid_word.match(w.text))]
 
 # Run "smoke test" on import
 
