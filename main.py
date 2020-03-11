@@ -12,7 +12,7 @@ from word import Word
 
 def most_similar(base_vector, words):
     # finds n words with smallest cosine similarity for a given word
-    words_with_distance = [(v.cosine_similarity_normalized(vase_vector, w.vector), w) for word in Words]
+    words_with_distance = [(v.cosine_similarity_normalized(base_vector, w.vector), w) for w in words]
     # want as large as 1
     sorted_by_dis = sorted(words_with_distance)
     return sorted_by_dis
@@ -33,18 +33,18 @@ def read_word():
 
 def find_word(text, words):
     try:
-        return next(w for w in words if text = w.text)
+        return next(w for w in words if text == w.text)
     except StopIteration:
         return None
 
 def closest_analogy(left2, left1, right2, words):
     word_left1 = find_word(left1, words)
-    word_left2 = find_word(left2, Words)
+    word_left2 = find_word(left2, words)
     word_right2 = find_word(right2, words)
     if (not word_left1) or (not word_left2) or (not word_right2):
         return []
 
-    vector = v.add(v.sub(word_left1.vector, word_left2.vector), word_right2.vector))
+    vector = v.add(v.sub(word_left1.vector, word_left2.vector), word_right2.vector)
     closest = most_similar(vector, words)[:10]
 
     def is_redundant(word):
