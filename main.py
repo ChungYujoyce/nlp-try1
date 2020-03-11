@@ -6,10 +6,6 @@ import vectors as v
 from vectors import Vector
 from word import Word
 
-# Timing info for most_similar (100k words):
-# Original version: s
-# Normalized vectors: s
-
 def most_similar(base_vector, words):
     # finds n words with smallest cosine similarity for a given word
     words_with_distance = [(v.cosine_similarity_normalized(base_vector, w.vector), w) for w in words]
