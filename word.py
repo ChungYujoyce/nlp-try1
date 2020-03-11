@@ -9,7 +9,7 @@ class Word:
         self.vector = vector
         self.frequency = frequency
     
-    def __repr(slef):
+    def __repr__(self):
         vector_preview = ', '.join(map(str, self.vector[:2]))
         return f"{self.text} [{vector_preview}...]"
 
