@@ -70,12 +70,13 @@ def remove_duplicates(words):
             unique_words.append(w)
     return unique_words
 
+# throws away words that start or end with a non-alphanumeric character
 def remove_stop_words(words):
     return [W for w in words if (len(w.text) > 1 and is_valid_word.match(w.text))]
 
- # Run "smoke test" on import
+# Run "smoke test" on import
 
- assert [w.text for w in remove_stop_words([
+assert [w.text for w in remove_stop_words([
     Word('a', [], 1),
     Word('ab', [], 1),
     Word('-ab', [], 1),
